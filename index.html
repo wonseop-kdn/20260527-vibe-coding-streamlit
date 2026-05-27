@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>임원섭 | 포트폴리오</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+    <style>
+        html, body { height: 100%; margin: 0; padding: 0; background: #f0f4ff; }
+        #root { height: 100%; }
+        #loading {
+            position: fixed; inset: 0; z-index: 9999;
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            transition: opacity 0.5s ease;
+        }
+        #loading.hide { opacity: 0; pointer-events: none; }
+        .loading-icon { font-size: 4rem; animation: pulse 1.5s infinite; }
+        .loading-title { font-size: 1.5rem; font-weight: 800; color: #1e3a8a; margin: 0.75rem 0 0.25rem; }
+        .loading-sub { font-size: 0.95rem; color: #64748b; }
+        .loading-bar {
+            width: 200px; height: 4px; background: #e2e8f0;
+            border-radius: 9999px; margin-top: 1.5rem; overflow: hidden;
+        }
+        .loading-bar-inner {
+            height: 100%; width: 40%;
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            border-radius: 9999px;
+            animation: slide 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+        @keyframes slide { 0%{transform:translateX(-100%)} 100%{transform:translateX(500%)} }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@stlite/mountable@0.63.0/build/stlite.js"></script>
+</head>
+<body>
+    <div id="loading">
+        <div class="loading-icon">⚡</div>
+        <p class="loading-title">임원섭 포트폴리오</p>
+        <p class="loading-sub">한전KDN 계통제어부</p>
+        <div class="loading-bar"><div class="loading-bar-inner"></div></div>
+        <p class="loading-sub" style="margin-top:1rem; font-size:0.8rem;">Streamlit 앱 로딩 중...</p>
+    </div>
+    <div id="root"></div>
+
+    <script>
+        fetch('./streamlit_app.py')
+            .then(function(r) { return r.text(); })
+            .then(function(code) {
+                stlite.mount(
+                    {
+                        requirements: ['pillow'],
+                        entrypoint: 'streamlit_app.py',
+                        files: { 'streamlit_app.py': code }
+                    },
+                    document.getElementById('root')
+                );
+                setTimeout(function() {
+                    var el = document.getElementById('loading');
+                    if (el) { el.classList.add('hide'); setTimeout(function(){ el.remove(); }, 600); }
+                }, 4000);
+            })
+            .catch(function(err) {
+                document.getElementById('loading').innerHTML =
+                    '<div style="text-align:center; font-family:sans-serif;">' +
+                    '<p style="font-size:2rem;">⚠️</p>' +
+                    '<p style="color:#dc2626; font-weight:600;">앱 로딩 실패</p>' +
+                    '<p style="color:#64748b; font-size:0.85rem;">GitHub Pages에서 열어주세요</p>' +
+                    '</div>';
+                console.error(err);
+            });
+    </script>
+</body>
+</html>
