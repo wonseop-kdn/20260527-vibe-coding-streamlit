@@ -13,16 +13,16 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
 
 :root {
-    --bg:      #0c0c13;
-    --s1:      #12131e;
-    --s2:      #191a28;
-    --accent:  #e03535;
-    --gold:    #c9a840;
-    --text:    #edecf2;
-    --muted:   #7c7a96;
-    --dim:     #38384e;
-    --border:  #222235;
-    --sb:      #08080f;
+    --bg:      #f5f1ea;
+    --s1:      #ffffff;
+    --s2:      #ede9e2;
+    --accent:  #d42e2e;
+    --gold:    #b8922e;
+    --text:    #0f0e18;
+    --muted:   #7a7688;
+    --dim:     #ccc8bf;
+    --border:  #e3dfd7;
+    --sb:      #0f0f1a;
 }
 
 /* ── base ── */
@@ -32,13 +32,13 @@ st.markdown("""
 .block-container { padding: 2.5rem 3rem !important; max-width: 1200px; }
 #MainMenu, footer, header { visibility: hidden; }
 
-/* subtle grid overlay */
+/* subtle grain overlay */
 [data-testid="stApp"]::before {
     content: '';
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background-image:
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+        linear-gradient(rgba(0,0,0,0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.012) 1px, transparent 1px);
     background-size: 48px 48px;
 }
 
@@ -119,8 +119,8 @@ st.markdown("""
 .p-bgnum {
     font-family: 'Bebas Neue', sans-serif; font-size: 9rem;
     line-height: 1; position: absolute; right: 1.5rem; top: 0.25rem;
-    color: var(--dim); user-select: none; pointer-events: none;
-    letter-spacing: 0.02em; opacity: 0.6;
+    color: var(--border); user-select: none; pointer-events: none;
+    letter-spacing: 0.02em; opacity: 1;
 }
 .p-period {
     font-family: 'Bebas Neue', 'DM Sans', sans-serif;
@@ -257,17 +257,17 @@ st.markdown("""
 [data-testid="stSidebar"] label {
     font-family: 'Bebas Neue', 'DM Sans', sans-serif !important;
     font-size: 0.9rem !important; letter-spacing: 0.22em !important;
-    color: #3a3a55 !important;
+    color: #5a5870 !important;
 }
-[data-testid="stSidebar"] p    { color: #3a3a55 !important; }
-[data-testid="stSidebar"] hr   { border-color: #16162a !important; }
+[data-testid="stSidebar"] p    { color: #5a5870 !important; }
+[data-testid="stSidebar"] hr   { border-color: #1e1e30 !important; }
 [data-testid="stSidebar"] .stFileUploader {
-    background: rgba(255,255,255,0.02) !important;
-    border: 1px dashed #222238 !important; border-radius: 0 !important;
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px dashed #2a2a42 !important; border-radius: 0 !important;
 }
 [data-testid="stSidebar"] .stFileUploader label {
     font-family: 'DM Sans', sans-serif !important;
-    font-size: 0.72rem !important; color: #333348 !important;
+    font-size: 0.72rem !important; color: #4a4a62 !important;
 }
 </style>
 """, unsafe_allow_html=True)
